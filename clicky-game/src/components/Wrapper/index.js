@@ -1,7 +1,11 @@
 import React from 'react';
-import "./Wrapper.css"
+import "./styles.css"
 
-const Wrapper = props=>
- <div className = {props.shouldShake === 'true'? 'shake' : 'still'}>{props.cardsShown}</div>
+
+
+const Wrapper = (props) =>
+ <div className = {props.class === true ? 'shake' : 'still'}>
+ {props.children}
+ </div>
 
 export default Wrapper;
