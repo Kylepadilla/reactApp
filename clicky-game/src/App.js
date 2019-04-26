@@ -49,8 +49,10 @@ clickHandler = id =>{
 //    1. deck is reshuffled, 
 //    2. the card chosen is added to the cardsClicked array,
 //    3. score increases by one point
-
+console.log(id)
+console.log(this.state.cardsClicked)
 console.log(this.state.cards)
+console.log(this.state.score)
 // onClick DO THIS:
 
 // SHUFFLE DECK
@@ -67,7 +69,7 @@ console.log(this.state.cards)
     this.setState(
       {
         cards: shuffledDeck,
-        cardsClicked: this.state.cardsClicked.concat([id]),
+        cardsClicked: this.state.cardsClicked.push(id),
         score: this.state.score + 1,
         errrr: false
       },
@@ -103,7 +105,7 @@ render(){
               <Carddeck 
                 key = {cardRender.id}
                 id = {cardRender.id}
-                image = {cardRender.image}
+                images = {cardRender.image}
                 clickHandler = {this.clickHandler}
                 />)
             )}
