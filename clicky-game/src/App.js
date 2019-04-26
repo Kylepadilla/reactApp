@@ -56,14 +56,11 @@ clickHandler = id =>{
 // SHUFFLE DECK
   const shuffledDeck = this.shuffleBuddy()
 
-
-
 // IF GAMEOVER
   if (this.state.cardsClicked.includes(id)) { 
     alert("you lost. gg");
     this.gameReset();
   } 
-
 
 // IF CLICKED CORRECTLY
   else {
@@ -74,7 +71,6 @@ clickHandler = id =>{
         score: this.state.score + 1,
         errrr: false
       },
-
 
 // IF SUPREME VICTORY
       () => {
@@ -95,7 +91,9 @@ clickHandler = id =>{
 // Footer: dispays the sticky footer to the page
 
 render(){
+
   return (
+
     <div>
    <Nav />
    <Jumbotron />
@@ -113,7 +111,9 @@ render(){
       </DealerTable>
    <Footer/>
    </div>
+
 )
+
 }
 
 }
