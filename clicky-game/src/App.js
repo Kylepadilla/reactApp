@@ -16,14 +16,14 @@ class App extends Component {
     errrr: false
   }
 
-                           // GAME RESET
+                                  // GAME RESET
  // The gameReset constructor resets the game back to the original state and shakes the page
  //  the shuffledDeck variable for a fresh shuffled deck that we put through the shufflebuddy function
 // ===========================================================================================
 
  gameReset = ()=>{
 
-  let shuffledDeck = this.shuffleBuddy()
+  const shuffledDeck = this.shuffleBuddy()
   
   this.setState({
     cards: shuffledDeck,
@@ -53,11 +53,19 @@ class App extends Component {
 //    3. score increases by one point
  clickHandler = id =>{ 
 
-//  ===================================SHUFFLE DECK========================================================
-  let shuffledDeck = this.shuffleBuddy()
-//  ===================================IF GAMEOVER========================================================
-  if (this.state.cardsClicked.includes(id)) { alert("you lost. gg");}
-//  =================================IF VICTORY========================================================
+// SHUFFLED DECK
+  const shuffledDeck = this.shuffleBuddy()
+
+
+
+// IF GAMEOVER
+  if (this.state.cardsClicked.includes(id)) { 
+    alert("you lost. gg");
+    this.gameReset();
+  } 
+
+
+// IF VICTORY
   else {
     this.setState(
       {
@@ -66,8 +74,10 @@ class App extends Component {
         score: this.state.score + 1,
         errrr: false
       },
-//  =================================IF SUPREME VICTORY========================================================
 
+
+
+// IF SUPREME VICTORY
       () => {
         if (this.state.score === 52) {
           alert("SUPREME VICTORY");
@@ -77,8 +87,6 @@ class App extends Component {
     );
   }
 };
-     
-     
 // ========================================RENDER HTML===================================================
 // Nav: nav is the navbar that links to my github
 // Jumbotron: displays the instructions to the screen
@@ -86,7 +94,7 @@ class App extends Component {
 // Wrapper: wraps each card for formating  and the shaking the screen if incorrect 
 // Carddeck: displays the card
 // Footer: dispays the sticky footer to the page
-                                
+
 render(){
   return (
     <div>
