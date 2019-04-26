@@ -50,7 +50,7 @@ clickHandler = id =>{
 //    2. the card chosen is added to the cardsClicked array,
 //    3. score increases by one point
 
-
+console.log(this.state.cards)
 // onClick DO THIS:
 
 // SHUFFLE DECK
