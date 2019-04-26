@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import cards from "./cards.json"
-import Carddeck from './components/Cards';
-import Wrapper from './components/Wrapper';
+import './components/Card_Deck';
+import './components/Wrapper';
 
-class App extends React.Component {
+class App extends Component {
 
   state= {
     cards,
@@ -13,7 +13,7 @@ class App extends React.Component {
   }
 
   // shuffleBuddy takes in the deck and sorts the deck in a random order
- shuffleBuddy = cardDeck=> {
+ shuffleBuddy = () => {
    this.setState({
     cards: this.state.cards.sort((x,y)=> {
       return 0.5 - Math.random();
@@ -27,12 +27,13 @@ class App extends React.Component {
 //  first I set my variables:
   // variable for the current card that was clicked
   const cardChosen = event.target
-console.log(cardChosen)
+
+    console.log(cardChosen)
   // variable for the cards that have already been chosen
   const cardsClicked = this.state.cardsClicked.indexOf(cardChosen) > -1;
 
   //  variable for a fresh shuffled deck that we put through the shufflebuddy function
-  const shuffledDeck = this.shuffleBuddy(cards)
+  const shuffledDeck = this.shuffleBuddy()
 
 //by clicking a card that already been selected, the game is reset and the cards are reordered
   if (cardsClicked) {
@@ -77,13 +78,14 @@ console.log(cardChosen)
 
 render(){
   return (
+   <Navbar/>
    <Wrapper
       shouldShake = {this.state.errr}
       cardsShown = {this.state.cards.map(cardRender => (
          <Carddeck
           key = {cardRender.id}
           id = {cardRender.id}
-          images = {cardRender.image}
+          image = {cardRender.image}
           click = {this.clickHandler}
           />
           ))}
