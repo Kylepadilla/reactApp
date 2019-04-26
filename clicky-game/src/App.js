@@ -15,12 +15,10 @@ class App extends Component {
     score: 0,
     errrr: false
   }
-
                                   // GAME RESET
  // The gameReset constructor resets the game back to the original state and shakes the page
  //  the shuffledDeck variable for a fresh shuffled deck that we put through the shufflebuddy function
 // ===========================================================================================
-
  gameReset = ()=>{
 
   const shuffledDeck = this.shuffleBuddy()
@@ -42,18 +40,20 @@ class App extends Component {
     }),
   })
 }
-
                              // ****CLICK HANDLER***
 // ===========================================================================================
+clickHandler = id =>{ 
 // clickHandler handle the event when a card out of the deck is clicked on;
 // by clicking a card that already been selected, the game is reset and the cards are reordered
 // if you click a card that hasnt been clicked yet:
 //    1. deck is reshuffled, 
 //    2. the card chosen is added to the cardsClicked array,
 //    3. score increases by one point
- clickHandler = id =>{ 
 
-// SHUFFLED DECK
+
+// onClick DO THIS:
+
+// SHUFFLE DECK
   const shuffledDeck = this.shuffleBuddy()
 
 
@@ -65,7 +65,7 @@ class App extends Component {
   } 
 
 
-// IF VICTORY
+// IF CLICKED CORRECTLY
   else {
     this.setState(
       {
@@ -74,7 +74,6 @@ class App extends Component {
         score: this.state.score + 1,
         errrr: false
       },
-
 
 
 // IF SUPREME VICTORY
