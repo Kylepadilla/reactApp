@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import cards from "./cards.json"
-import './components/Card_Deck';
-import './components/Wrapper';
+import Carddeck from './components/Card_Deck';
+import Wrapper from './components/Wrapper';
+import DealerTable from './components/Dealer_Table'
+import Jumbotron from './components/Jumbotron'
+import Nav from './components/Nav'
+import Footer from './components/Footer'
 
 class App extends Component {
 
@@ -78,19 +82,25 @@ class App extends Component {
 
 render(){
   return (
-   <Navbar/>
-   <Wrapper
-      shouldShake = {this.state.errr}
-      cardsShown = {this.state.cards.map(cardRender => (
-         <Carddeck
-          key = {cardRender.id}
-          id = {cardRender.id}
-          image = {cardRender.image}
-          click = {this.clickHandler}
-          />
-          ))}
- />
+    <div>
+   <Nav />
+   <Jumbotron />
+   <DealerTable score = {this.state.score}>
+       <Wrapper className = {this.state.errrr}>
+          {this.state.cards.map(cardRender => (
+              <Carddeck 
+                key = {cardRender.id}
+                id = {cardRender.id}
+                image = {cardRender.image}
+                clickHandler = {this.clickHandler}
+                />)
+            )}
+        </Wrapper>
+      </DealerTable>
+   <Footer/>
+   </div>
 )
 }
+
 }
 export default App;
