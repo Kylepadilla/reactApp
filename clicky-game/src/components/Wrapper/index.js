@@ -3,7 +3,9 @@ import "./styles.css"
 
 
 
-const Wrapper = (props, {children}) =>
- <div className = {props.shouldShake === 'true' ? 'shake' : 'still'}>{children}</div>
+const Wrapper = (props) =>
+ <div className = {props.class === 'true' ? 'shake' : 'still'}>
+ <div>{props.children}</div>
+ </div>
 
 export default Wrapper;

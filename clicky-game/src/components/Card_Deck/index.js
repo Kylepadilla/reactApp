@@ -6,8 +6,8 @@ function Carddeck(props) {
   return (
     <div className="card">
       <div className="img-container">
-        <img className="img-thumbnail img-responsive" alt = "unavailable" href={props.images}/>\
-        <span onClick={()=>props.click(props.id)} className="choose">x</span>
+        <img className="img-thumbnail img-responsive" alt = "unavailable" href={props.image}/>
+        <span className="choose" onClick={()=>props.clickHandler(props.id)} >x</span>
       </div>
     </div>
   );
