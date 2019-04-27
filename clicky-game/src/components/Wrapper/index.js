@@ -4,7 +4,7 @@ import "./styles.css"
 
 
 const Wrapper = (props) =>
- <div className = {props.class === true ? 'shake' : 'still'}>
+ <div className = {props.className === true ? 'shake' : 'still'}>
  {props.children}
  </div>
 
