@@ -4,9 +4,13 @@ import React from "react";
 
 export function Input(props) {
   return (
-    <div className="form-group">
-      <input className="form-control" {...props} />
-    </div>
+  
+    <div className="input-group mb-3">
+      <input {...props}
+      className="form-control" 
+      aria-describedby="button-addon2"
+       />
+       </div>
   );
 }
 
@@ -18,10 +22,10 @@ export function TextArea(props) {
   );
 }
 
-export function FormBtn(props) {
+ export function FormBtn(props) {
   return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
-      {props.children}
+    <button {...props} className="btn btn-outline-secondary">
+      Search
     </button>
   );
-}
+ }
