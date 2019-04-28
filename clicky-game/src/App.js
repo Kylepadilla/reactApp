@@ -42,7 +42,7 @@ class App extends Component {
 	};
 	// ****CLICK HANDLER***
 	// ===========================================================================================
-	clickHandler = (id) => {
+	clickHandler = id => {
 		// clickHandler handle the event when a card out of the deck is clicked on;
 		// by clicking a card that already been selected, the game is reset and the cards are reordered
 		// if you click a card that hasnt been clicked yet:
@@ -78,6 +78,12 @@ class App extends Component {
 			);
 		}
 	};
+
+	Jumboclick = event =>{
+
+	}
+
+
 	// ========================================RENDER HTML===================================================
 	// Nav: nav is the navbar that links to my github
 	// Jumbotron: displays the instructions to the screen
@@ -91,7 +97,7 @@ class App extends Component {
 			<div>
 				<Nav />
 				<Jumbotron />
-				<DealerTable score={this.state.score}>
+				<DealerTable scoreTitle={this.state.score}>
 					<Wrapper class={this.state.errrr}>
 						{this.state.cards.map((cardRender) => (
 							<Carddeck

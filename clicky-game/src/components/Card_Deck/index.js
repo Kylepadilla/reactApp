@@ -1,4 +1,5 @@
 import React from 'react';
+import'./styles.css'
 
 function Carddeck(props) {
 	console.log(props.images);
@@ -6,7 +7,7 @@ function Carddeck(props) {
 		<div className="card">
 			<div className="img-container">
 				<img
-					className="img-thumbnail img-responsive"
+					className="img-thumbnail img-responsive yeet"
 					alt="unavailable"
 					src={process.env.PUBLIC_URL + props.images}
 				/>
