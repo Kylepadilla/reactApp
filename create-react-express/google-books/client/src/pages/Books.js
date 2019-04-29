@@ -1,38 +1,37 @@
 import React, { Component } from 'react';
-// import DeleteBtn from "../components/DeleteBtn";
-// import Jumbotron from "../components/Jumbotron";
 import Search from '../components/Search';
 import Results from '../components/Results';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
-// import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from '../components/List';
+import {List} from '../components/List';
 import { Input, FormBtn } from '../components/Form';
+import Nav from '../components/Nav';
 import axios from 'axios';
+import { PromiseProvider } from "mongoose";
 
 class Books extends Component {
 	state = {
 		books: [],
 		title: '',
-		author: ''
+		author: '',
+		numSaved: 0
 	};
-	// api key = AIzaSyAspRS4dGPy0chMnNbfZM8UmQrfEP_S7N0
+// ===========================================handles the input change==========================================
+
 	handleInputChange = (event) => {
 		const { name, value } = event.target;
 		this.setState({
 			[name]: value
 		});
 	};
-
+// =======================================Handle the google Books API GET request================================================
 	handleFormSubmit = (event) => {
 		event.preventDefault();
 
 		if (this.state.title) {
+
 			const titlesearch = this.state.title.replace(/([()[{*+.$^\\|?])/g, '\\$1');
 			const authsearch = this.state.author.replace(/([()[{*+.$^\\|?])/g, '\\$1');
-			// console.log('state: ' + this.state.books);
-			console.log(titlesearch + '  title-Search');
-			console.log(authsearch + '  auth-Search');
 
 			axios
 				.get(
@@ -42,9 +41,8 @@ class Books extends Component {
 						authsearch +
 						'&key=AIzaSyAspRS4dGPy0chMnNbfZM8UmQrfEP_S7N0'
 				)
-				.then((res) => {
+				.then(res => {
 					const bookdata = res.data.items;
-          console.log(bookdata)
 					this.setState({
 						books: bookdata
 					});
@@ -52,15 +50,51 @@ class Books extends Component {
 				.catch((err) => console.log(err));
 		}
   };
-  
-  clickHandler = event =>{
-      const book_Id = event.target.id
-      console.log(book_Id)
+  // =================================================On Click Save to DB==============================================
+
+  clickHandler = i =>{
+
+console.log(i)
+
+      API.saveBook({
+        title: this.state.books[i].volumeInfo.title,
+        image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
+        subtitle: this.state.books[i].volumeInfo.subtitle,
+        authors: this.state.books[i].volumeInfo.authors,
+        rating: this.state.books[i].volumeInfo.rating,
+        printType: this.state.books[i].volumeInfo.printType,
+        infoLink: this.state.books[i].volumeInfo.infoLink,
+        pageCount: this.state.books[i].volumeInfo.pageCount,
+        lang: this.state.books[i].volumeInfo.lang,
+        description: this.state.books[i].volumeInfo.description,
+        publishedDate: this.state.books[i].volumeInfo.publishedDate,
+        sale: this.state.books[i].volumeInfo.sale,
+        publisher: this.state.books[i].volumeInfo.publisher,
+      })
+			.then(res=>{
+
+				this.setState({numSaved: this.state.numSaved + 1})
+      }).catch(err=> console.log(err))
   }
+// ================================================================================================
+// ================================================================================================
 
 	render() {
 		return (
 			<div>
+	
+	<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      
+			<Link to="/" className={window.location.pathname === "/" ? "nave-link active" : "nav-link"}> 
+			<li className="navbar-brand">(React) Google Book Search</li></Link>
+      
+			<Link to="/Saved" type="button" className="nave-link active btn btn-primary yeet ">
+
+			Saved Books <span className="badge badge-light">{this.state.numSaved}</span>
+			</Link>
+
+    </nav>
+
 				<div style={{ height: 300, clear: 'both', paddingTop: 120, textAlign: 'center' }} className="jumbotron">
 					<h1>(React) Google Books Search</h1>
 				</div>
@@ -87,17 +121,17 @@ class Books extends Component {
 							return (
 								<Results
 									key={book.id}
-                  id={book.id}
+                  id={i}
                   image={book.volumeInfo.imageLinks.thumbnail}
 									title={book.volumeInfo.title}
 									subtitle={book.volumeInfo.subtitle}
-									authors={book.volumeInfo.authors[0]}
+									authors={book.volumeInfo.authors}
 									description={book.volumeInfo.description}
                   rating={book.volumeInfo.maturityRating}
                   printType={book.volumeInfo.printType}
                   infoLink = {book.volumeInfo.infoLink}
                   pageCount = {book.volumeInfo.pageCount}
-                  lag = {book.volumeInfo.language}
+                  lang = {book.volumeInfo.language}
                   sale = {book.saleInfo.saleability}
                   pub = {book.volumeInfo.publisher}
                   save={this.clickHandler}
@@ -112,27 +146,6 @@ class Books extends Component {
 		);
 	}
 }
-// 				<List>
-// 					{this.state.title ? (
-// 						this.state.books.map((book) => {
-// 							return (
-// 								<Results
-// 									key={book._id}
-// 									id={book._id}
-// 									title={book.volumeInfo.title}
-// 									authors={'book.volumeInfo.authors[0]'}
-// 									description={book.volumeInfo.description}
-// 									year={book.volumeInfo.date}
-// 								/>
-// 							);
-// 						})
-// 					) : (
-// 						<h3>you can search for books above </h3>
-// 					)}
-// 				</List>
-// 			</div>
-// 		);
-// 	}
-// }
+
 
 export default Books;
