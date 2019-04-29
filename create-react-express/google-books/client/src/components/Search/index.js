@@ -1,12 +1,12 @@
 import React from "react";
 
-function Search({ children }) {
+ const Search = props => {
   return (
     <div
       style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
       className="jumbotron"
     >
-      {children}
+      {props.children}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react"
 import "./styles.css"
-const Results = props => 
+
+const Saved= props => 
 <div>
   <a href={props.infoLink} className="list-group-item list-group-item-action">
     <h3 className="mb-1 title">{props.title}</h3>
@@ -24,10 +25,8 @@ const Results = props =>
   <li className="list-group-item">Saleability: {props.sale}</li>
   </ul>
   </a>
-  <button  type="button" className="btn btn-primary buttonC" onClick = {props.save(props.id)}>Save Book</button>
+  <button  type="button" className="btn btn-primary buttonC" onClick = {props.delete(props.id)}>Save Book</button>
   </div>
    
+   export default Saved;
   
-
-
-export default Results

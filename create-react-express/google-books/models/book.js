@@ -3,9 +3,19 @@ const Schema = mongoose.Schema;
 
 const bookSchema = new Schema({
   title: { type: String, required: true },
-  author: { type: String, required: true },
-  synopsis: String,
-  date: { type: Date, default: Date.now }
+  image: { type: String, },
+  subtitle: { type: String},
+  authors: { type: String},
+  rating: { type: String},
+  printType: { type: String},
+  infoLink: { type: String},
+  pageCount: { type: String},
+  lang: { type: String },
+  description: { type: String },
+  publishedDate: { type: String },
+  sale: { type: String },
+  publisher: { type: String },
+
 });
 
 const Book = mongoose.model("Book", bookSchema);

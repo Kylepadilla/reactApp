@@ -3,10 +3,10 @@ import "./style.css";
 
 // This file exports both the List and ListItem components
 
-export function List({ children }) {
+export const List = props =>  {
   return (
     <div className="list-overflow-container">
-      <ul className="list-group">{children}</ul>
+     {props.children}
     </div>
   );
 }
