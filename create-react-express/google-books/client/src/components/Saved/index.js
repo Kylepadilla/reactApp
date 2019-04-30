@@ -25,7 +25,7 @@ const Saved= props =>
   <li className="list-group-item">Saleability: {props.sale}</li>
   </ul>
   </a>
-  <button  type="button" className="btn btn-primary buttonC" onClick = {props.delete(props.id)}>Save Book</button>
+  <button  type="button" className="btn btn-primary buttonC" onClick = {()=>props.delete(props.id)}>Delete Book</button>
   </div>
    
    export default Saved;

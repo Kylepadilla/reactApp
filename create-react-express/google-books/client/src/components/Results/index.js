@@ -24,7 +24,7 @@ const Results = props =>
   <li className="list-group-item">Saleability: {props.sale}</li>
   </ul>
   </a>
-  <button  type="button" className="btn btn-primary buttonC" onClick = {props.save(props.id)}>Save Book</button>
+  <button  type="button" className="btn btn-primary buttonC" onClick = {()=>props.save(props.id)}>Save Book</button>
   </div>
    
   

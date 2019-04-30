@@ -54,27 +54,45 @@ class Books extends Component {
 
   clickHandler = i =>{
 
-console.log(i)
+		this.setState({numSaved: this.state.numSaved + 1})
 
-      API.saveBook({
+		const bookarrID = this.state.books[i]
+
+	  console.log(bookarrID)
+	
+		console.log({
+			title: this.state.books[i].volumeInfo.title,
+			image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
+			subtitle: this.state.books[i].volumeInfo.subtitle,
+			authors: this.state.books[i].volumeInfo.authors[0],
+			rating: this.state.books[i].volumeInfo.maturityRating,
+			printType: this.state.books[i].volumeInfo.printType,
+			infoLink: this.state.books[i].volumeInfo.infoLink,
+			pageCount: this.state.books[i].volumeInfo.pageCount.toString(),
+			lang: this.state.books[i].volumeInfo.language,
+			description: this.state.books[i].volumeInfo.description,
+			publishedDate: this.state.books[i].volumeInfo.publishedDate,
+			sale: this.state.books[i].saleInfo.saleability,
+			publisher: this.state.books[i].volumeInfo.publisher
+		});
+
+			API.saveBook({
         title: this.state.books[i].volumeInfo.title,
         image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
         subtitle: this.state.books[i].volumeInfo.subtitle,
-        authors: this.state.books[i].volumeInfo.authors,
-        rating: this.state.books[i].volumeInfo.rating,
+        authors: this.state.books[i].volumeInfo.authors[0],
+        rating: this.state.books[i].volumeInfo.maturityRating,
         printType: this.state.books[i].volumeInfo.printType,
         infoLink: this.state.books[i].volumeInfo.infoLink,
-        pageCount: this.state.books[i].volumeInfo.pageCount,
-        lang: this.state.books[i].volumeInfo.lang,
+        pageCount: this.state.books[i].volumeInfo.pageCount.toString(),
+        lang: this.state.books[i].volumeInfo.language,
         description: this.state.books[i].volumeInfo.description,
         publishedDate: this.state.books[i].volumeInfo.publishedDate,
-        sale: this.state.books[i].volumeInfo.sale,
-        publisher: this.state.books[i].volumeInfo.publisher,
-      })
-			.then(res=>{
-
-				this.setState({numSaved: this.state.numSaved + 1})
-      }).catch(err=> console.log(err))
+        sale: this.state.books[i].saleInfo.saleability,
+        publisher: this.state.books[i].volumeInfo.publisher
+			})
+			.then(res=> alert(this.state.books[i].volumeInfo.title + "has been added to saved books!"))
+			.catch(err=> console.log(err))
   }
 // ================================================================================================
 // ================================================================================================
@@ -117,11 +135,11 @@ console.log(i)
 				</div>
 				<List>
 					{this.state.title ? (
-						this.state.books.map((book, i) => {
+						this.state.books.map((book) => {
 							return (
 								<Results
 									key={book.id}
-                  id={i}
+                  id={book.id}
                   image={book.volumeInfo.imageLinks.thumbnail}
 									title={book.volumeInfo.title}
 									subtitle={book.volumeInfo.subtitle}
