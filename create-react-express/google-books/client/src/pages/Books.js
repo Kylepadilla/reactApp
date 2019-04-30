@@ -60,21 +60,21 @@ class Books extends Component {
 
 	  console.log(bookarrID)
 	
-		console.log({
-			title: this.state.books[i].volumeInfo.title,
-			image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
-			subtitle: this.state.books[i].volumeInfo.subtitle,
-			authors: this.state.books[i].volumeInfo.authors[0],
-			rating: this.state.books[i].volumeInfo.maturityRating,
-			printType: this.state.books[i].volumeInfo.printType,
-			infoLink: this.state.books[i].volumeInfo.infoLink,
-			pageCount: this.state.books[i].volumeInfo.pageCount.toString(),
-			lang: this.state.books[i].volumeInfo.language,
-			description: this.state.books[i].volumeInfo.description,
-			publishedDate: this.state.books[i].volumeInfo.publishedDate,
-			sale: this.state.books[i].saleInfo.saleability,
-			publisher: this.state.books[i].volumeInfo.publisher
-		});
+		// console.log({
+		// 	title: this.state.books[i].volumeInfo.title,
+		// 	image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
+		// 	subtitle: this.state.books[i].volumeInfo.subtitle,
+		// 	authors: this.state.books[i].volumeInfo.authors[0],
+		// 	rating: this.state.books[i].volumeInfo.maturityRating,
+		// 	printType: this.state.books[i].volumeInfo.printType,
+		// 	infoLink: this.state.books[i].volumeInfo.infoLink,
+		// 	pageCount: this.state.books[i].volumeInfo.pageCount.toString(),
+		// 	lang: this.state.books[i].volumeInfo.language,
+		// 	description: this.state.books[i].volumeInfo.description,
+		// 	publishedDate: this.state.books[i].volumeInfo.publishedDate,
+		// 	sale: this.state.books[i].saleInfo.saleability,
+		// 	publisher: this.state.books[i].volumeInfo.publisher
+		// });
 
 			API.saveBook({
         title: this.state.books[i].volumeInfo.title,
@@ -135,16 +135,16 @@ class Books extends Component {
 				</div>
 				<List>
 					{this.state.title ? (
-						this.state.books.map((book) => {
+						this.state.books.map((book, i) => {
 							return (
 								<Results
-									key={book.id}
-                  id={book.id}
+				  key={book.id}
+                  id={i}
                   image={book.volumeInfo.imageLinks.thumbnail}
-									title={book.volumeInfo.title}
-									subtitle={book.volumeInfo.subtitle}
-									authors={book.volumeInfo.authors}
-									description={book.volumeInfo.description}
+				  title={book.volumeInfo.title}
+				  subtitle={book.volumeInfo.subtitle}
+				  authors={book.volumeInfo.authors}
+				  description={book.volumeInfo.description}
                   rating={book.volumeInfo.maturityRating}
                   printType={book.volumeInfo.printType}
                   infoLink = {book.volumeInfo.infoLink}
